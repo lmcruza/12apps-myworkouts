@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 import { WorkoutService } from '../../services/workout.service';
+import { WorkoutDetailsPage } from '../workout-details/workout-details';
 
 @Component({
     selector: 'workouts',
@@ -11,13 +12,25 @@ import { WorkoutService } from '../../services/workout.service';
 })
 export class WorkoutsPage implements OnInit {
 
-    constructor(private _workoutService:WorkoutService) {
+    workouts:any[];
+
+    constructor(public navCtrl: NavController, private _workoutService:WorkoutService) {
+        this._workoutService.getWorkouts()
+            .subscribe(workouts => {
+                this.workouts = workouts;
+            });
     }
 
     ngOnInit() {
         this._workoutService.getWorkouts()
             .subscribe(workouts => {
-                console.log(workouts);
-            })
+                this.workouts = workouts;
+            });
+    }
+
+    workoutSelected(event, workout){
+        this.navCtrl.push(WorkoutDetailsPage, {
+            workout: workout
+        });
     }
 }

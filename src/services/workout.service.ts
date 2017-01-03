@@ -20,4 +20,16 @@ export class WorkoutService {
             .map(res => res.json());
     }
 
+    addWorkout(workout){
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        return this._http.post(this.workoutsUrl+'?apiKey='+this.apiKey, JSON.stringify(workout), {headers})
+            .map(res => res.json());
+    }
+
+    deleteWorkout(workoutId){
+        return this._http.delete(this.workoutsUrl+'/'+workoutId+'?apiKey='+this.apiKey)
+            .map(res => res.json());
+    }
+
 }

@@ -6,5 +6,29 @@
 
 <ion-content padding class="add-workout">
   <h2>Add Workout</h2>
-
+  <form (ngSubmit)="onSubmit()">
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Title</ion-label>
+        <ion-input name="title" [(ngModel)]="title" type="text" value=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Note</ion-label>
+        <ion-input name="note" [(ngModel)]="note" type="textarea"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label fixed>Type</ion-label>
+        <ion-select name="type" [(ngModel)]="type">
+          <ion-option value="Jogging">Jogging</ion-option>
+          <ion-option value="Free Weights">Free Weights</ion-option>
+          <ion-option value="Elliptical">Elliptical</ion-option>
+          <ion-option value="Boxing">Boxing</ion-option>
+          <ion-option value="Aerobics">Aerobics</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <button type="submit" ion-button block>Add Workout</button>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>
